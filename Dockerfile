@@ -24,7 +24,7 @@ RUN set -x \
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
 RUN set -ex; \
-	apk add --no-cache --virtual .fetch-deps libressl nss openssl; \
+	apk add --no-cache --virtual .fetch-deps libressl; \
 	wget -O /usr/local/bin/dind "https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind"; \
 	chmod +x /usr/local/bin/dind; \
 	apk del .fetch-deps
@@ -33,6 +33,8 @@ RUN set -ex; \
 RUN apk add --no-cache coreutils git openssh-client curl zip unzip bash ttf-dejavu ca-certificates openssl groff \
 	py-pip python jq coreutils curl zip unzip bash ttf-dejavu ca-certificates openssl openjdk8 maven \
 	&& pip install awscli
+
+RUN apk --no-cache nss openssl
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 

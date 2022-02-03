@@ -34,7 +34,7 @@ RUN apk add --no-cache coreutils git openssh-client curl zip unzip bash ttf-deja
 	py-pip python jq coreutils curl zip unzip bash ttf-dejavu ca-certificates openssl openjdk8 maven \
 	&& pip install awscli
 
-RUN apk --no-cache nss openssl
+RUN apk add --no-cache nss openssl
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
 
